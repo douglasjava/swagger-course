@@ -73,9 +73,7 @@ public class ClienteDAO {
 			}
 
 			if (idToRead != null) {
-
 				clienteslz.add(clientes.get(idToRead));
-
 				idToRead = null;
 			}
 		}

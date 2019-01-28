@@ -1,0 +1,266 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: 'Cliente API'
+  description: '  | Está API tem como objetivo cadastrar, consultar, alterar e excluir clientes. [Saiba Mais](http://localhost:8080/)'
+consumes:
+  - application/json
+produces:
+  - application/json
+tags: 
+  - name: 'Consulta'
+  - name: 'Cadastro'
+  - name: 'Edicao'
+  - name: 'Exclusao'
+  - name: 'API'
+host: localhost:8080
+basePath: /swagger-course
+schemes: 
+  - http
+  - https
+paths:
+  /clientes: 
+    get:
+      tags: 
+        - Consulta
+      summary: "Consulta todos os clientes."
+      operationId: "consultaTodos"
+      description: "Esta operação tem por objetivo consultar todos os clientes."
+      responses:
+        200:
+          description: "Sucesso ao consultar todos os clientes."
+          schema:
+           $ref: "#/definitions/Clientes"
+        400:
+          description: "Consulta inválida."
+        401:
+          description: "Consulta não autorizada."         
+        404:
+          description: "Nenhum cliente encontrado para a consulta."       
+        500:
+          description: "Erro interno ao tentar realizar consulta."
+  /cliente:
+    post:
+      tags: 
+        - Cadastro
+      summary: "Cadastro de um novo cliente."
+      operationId: "cadastraNovo"
+      description: "Esta operação tem por objetivo cadastrar um novo cliente."
+      parameters: 
+        - in: body
+          name: "cliente"
+          required: true
+          schema:
+            $ref: '#/definitions/Cliente'
+      responses:
+        201:
+          description: "Sucesso ao cadastrar o novo cliente."
+          schema:
+            $ref: '#/definitions/Cliente'
+          headers:
+            Location:
+              type: "string"
+              description: "URI do cliente criado."          
+        400:
+          description: "Cadastro inválido."
+        401:
+          description: "Cadastro não autorizado."
+        500:
+          description: "Erro interno ao tentar realizar o cadastro."    
+  /cliente/{id}:
+    put:
+      tags: 
+        - Edicao
+      summary: "Altera um cliente existente."
+      operationId: "alteraCliente"
+      description: "Esta operação tem por objetivo alterar um cliente existente."
+      parameters: 
+        - in: path
+          name: "id"
+          type: integer
+          format: "int32"
+          required: true
+          description: "Id do cliente."
+        - in: body
+          name: "cliente"
+          required: true
+          schema:
+            $ref: '#/definitions/Cliente'
+      responses:
+        202:
+          description: "Sucesso ao alterar o cliente exixtente."
+          schema:
+            $ref: '#/definitions/Cliente'
+          headers:
+            Location:
+              type: "string"
+              description: "URI do cliente alterado."
+        400:
+          description: "Alteração inválida."
+        401:
+          description: "Alteração não autorizada."
+        500:
+          description: "Erro interno ao tentar alterar o cadastro."
+    get:
+      tags: 
+        - Consulta
+      summary: "Consulta um cliente existente por id."
+      operationId: "consultaClientePorId"
+      description: "Esta operação tem por objetivo consultar cliente existente por id."
+      parameters: 
+        - in: path
+          name: "id"
+          type: integer
+          format: "int32"
+          required: true
+          description: "Número do Id do cliente consultado."      
+      responses:
+        200:
+          description: "Sucesso ao consultar um cliente por id."
+          schema:
+            $ref: '#/definitions/Cliente'
+        400:
+          description: "Consulta inválida."
+        401:
+          description: "Consulta não autorizada."
+        404:
+          description: "Nenhum cliente encontrado para a consulta."
+        500:
+          description: "Erro interno ao tentar realizar a consulta por id."
+    delete:
+      tags: 
+       - Exclusao
+      summary: "Exclusão de cliente existente"
+      description: "Esta operacao tem por objetivo excluir cadastro de cliente por id."
+      operationId: "excluirClientePorId"
+      parameters: 
+        - in: path
+          name: "id"
+          type: integer
+          format: "int32"
+          required: true
+          description: "Número do id do cliente excluído"
+      responses:
+        204:
+          description: "Sucesso ao excluir um cliente existente"
+        400:
+          description: "Exclusão inválida."
+        401:
+          description: "Exclusão não autorizada."
+        404:
+          description: "Nenhum cliente encontrado para a exclusão."
+        500:
+          description: "Erro interno ao tentar realizar a exclusão."
+
+  /cliente/consulta/{sobrenome}:
+    get:
+      tags: 
+        - Consulta
+      summary: "Consulta um cliente por sobrenome"
+      description: "Esta operação tem por objetivo consultar cliente pelo sobrenome"
+      operationId: "consultaClientePorSobrenome"
+      parameters: 
+        - in: path
+          name: "sobrenome"
+          type: string
+          required: true
+          description: "Sobrenome do cliente."
+      responses:
+        200:
+          description: "Sucesso ao consultar cliente por sobrenome."
+          schema:
+           $ref: "#/definitions/Clientes"
+        400:
+          description: "Consulta inválida."
+        401:
+          description: "Consulta não autorizada."         
+        404:
+          description: "Nenhum cliente encontrado para a consulta por sobrenome."       
+        500:
+          description: "Erro interno ao tentar realizar consulta por sobrenome"
+  /cliente/{status}{id}:
+    put:
+      tags: 
+        - Edicao
+      summary: "Alteração de status de cliente por id."
+      operationId: "alteraStatusPorId"
+      description: "Esta operação tem por objetivo alterar o status do cliente por id."
+      parameters: 
+        - in: path
+          name: "status"
+          required: true
+          type: string
+          enum: ["ativo", "inativo"]
+          description: "status do cliente."
+        - in: path
+          name: "id"
+          required: true
+          type: integer
+          format: "int32"
+          description: "id do cliente."
+      responses:
+        202:
+          description: "Sucesso ao alterar o cliente exixtente."
+          schema:
+            $ref: '#/definitions/Cliente'
+          headers:
+            Location:
+              type: "string"
+              description: "URI do cliente alterado."
+        400:
+          description: "Alteração inválida."
+        401:
+          description: "Alteração não autorizada."
+        500:
+          description: "Erro interno ao tentar alterar o cadastro."
+  /readme:
+    get:
+      tags: 
+        - API
+      summary: "Recupera readme da API" 
+      description: "Esta operação retorna o read da API."
+      operationId: "readme"
+      responses:
+        200:
+          description: "Sucesso ao recuperar readme da API."
+        500:
+          description: "Erro interno ao tentar recuperar o readme da API."
+definitions:
+
+  Clientes:
+    type: array
+    items:
+      $ref: '#/definitions/Cliente'
+
+  Cliente:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: "int32"
+        description: "Identificado do cliente."
+      nome:
+        type: string
+        description: "Nome do cliente."
+      sobrenome:
+        type: string
+        description: "Sobrenome do cliente."
+      iniciais:
+        type: string
+        minLength: 2
+        maxLength: 10
+        description: "Iniciais do nome completo do cliente."
+      dataNascimento:
+        type: string
+        format: "date"
+        description: "Data de Nascimento do cliente."
+      dataAtualizacaoRegistro:
+        type: string
+        format: "date"
+        description: "Data de atualizacao dos dados do cliente."
+      status:
+        type: boolean
+        description: "Status ativo ou inativo do cliente."
+      tipo:
+        type: string
+        enum: ["interno", "externo"]

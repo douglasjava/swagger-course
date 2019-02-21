@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "92146cd7-f56b-4c44-b1c6-e079e6353193",
+		"name": "Swagger-course",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Listar_clientes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/swagger-course/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-course",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra_cliente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\": \"Douglas\",\n\t\"sobrenome\": \"Oliveira\",\n\t\"iniciais\":\"DOM\",\n\t\"dataNascimento\": \"1997-03-04\",\n\t\"tipo\": \"interno\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/swagger-course/cliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-course",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "alterar_cliente",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"nome\": \"Marcos Alberto da Silva\",\r\n        \"sobrenome\": \"Nogueira\",\r\n        \"iniciais\": \"MASN\",\r\n        \"dataNascimento\": \"1990-06-12\",\r\n        \"dataAtualizacaoRegistro\": \"2019-01-27\",\r\n        \"status\": true,\r\n        \"tipo\": \"interno\"\r\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/swagger-course/cliente/150",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-course",
+						"cliente",
+						"150"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta por Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/swagger-course/cliente/12",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-course",
+						"cliente",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta por sobrenome",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/swagger-course/cliente/consulta/Alberto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"swagger-course",
+						"cliente",
+						"consulta",
+						"Alberto"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

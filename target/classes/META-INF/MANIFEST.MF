@@ -3,7 +3,7 @@ Implementation-Title: swagger-spring
 Implementation-Version: 1.0.0
 Built-By: Marques
 Implementation-Vendor-Id: io.swagger
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_201
 Implementation-URL: http://projects.spring.io/spring-boot/swagger-spri
  ng/
 Created-By: Maven Integration for Eclipse
